@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mcorleon">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="923号森林">
+  <meta property="og:description" content="java">
+  <meta property="og:site_name" content="923号森林">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="http://Mcorleon.github.io">
+  
+    <link rel="alternate" href="/atom.xml" title="923号森林" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>923号森林</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/wallhaven-714738.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Untitled Post</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/Mcorleon">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:mcorleon95@outlook.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Mcorleon</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-11-18</span>
+            <span class="time">15:25:21</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h1 id="智慧汉南应急处置模块说明"><a href="#智慧汉南应急处置模块说明" class="headerlink" title="智慧汉南应急处置模块说明"></a>智慧汉南应急处置模块说明</h1><p>应急处置模块主要由三个部分构成：故障报修全过程管理、停电管理、客户信息查询。</p>
+<h2 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h2><p>应急处置模块的运行需要使用9张表的数据，分别是：</p>
+<ul>
+<li><strong>故障 h_fault</strong></li>
+<li><strong>工单类型 h_workorder_type</strong></li>
+<li><strong>工单状态 h_fault_state</strong></li>
+<li><strong>故障类型 h_fault_type</strong></li>
+<li><strong>处理班组 h_repair_group</strong></li>
+<li><strong>接单人 h_accepter</strong></li>
+<li><strong>派单人 h_distributer</strong></li>
+<li><strong>客户表 h_cus_customer</strong></li>
+<li><strong>停电计划表 h_power_manage</strong></li>
+</ul>
+<p>故障表结构如下：</p>
+<p><img src="C:\Users\mcorl\AppData\Roaming\Typora\typora-user-images\1539509317990.png" alt="1539509317990"></p>
+<p>故障类型表结构如下：</p>
+<p><img src="C:\Users\mcorl\AppData\Roaming\Typora\typora-user-images\1539513982093.png" alt="1539513982093"></p>
+<p>客户表结构如下：</p>
+<p><img src="C:\Users\mcorl\AppData\Roaming\Typora\typora-user-images\1539515549579.png" alt="1539515549579"></p>
+<p>停电计划表结构如下：</p>
+<p><img src="C:\Users\mcorl\AppData\Roaming\Typora\typora-user-images\1539515786293.png" alt="1539515786293"></p>
+<p>其余的工单类型 、工单状态 、处理班组 、接单人 、派单人这5张表的结构比较简单，都是由ID和NAME两个字段构成。</p>
+<p>故障报修模块的功能根本上就是实现对故障表（h_fault）的增删改查，由故障类型、工单类型 、工单状态 、处理班组 、接单人 、派单人这6张表提供h_fault一些字段的详细信息，这些字段在h_fault中以外键ID的形式存储，需要得到具体信息时即可根据ID在相应的表查出详细信息。</p>
+<p>停电管理模块和客户查询模块则是基于对停电计划表和客户表进行模糊查询实现的。</p>
+<h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><h3 id="接派单"><a href="#接派单" class="headerlink" title="接派单"></a>接派单</h3><p><img src="C:\Users\mcorl\AppData\Roaming\Typora\typora-user-images\1539516684827.png" alt="1539516684827"></p>
+<p>进入接单页面后如上图所示，前端JS进行如下流程：</p>
+<ul>
+<li>工单编号根据当前时间戳自动生成，并填充进对应HTML元素中</li>
+<li>layui框架的加载：加载日历模块，设置需要验证的输入框，设置下拉菜单的监听事件等等</li>
+<li>分别发送ajax请求，加载各个下拉菜单的选项</li>
+<li>隐藏派单div和处理div（因为当前只是在录入故障单，还没到这些步骤）</li>
+<li>绑定“保存”和“派发”按钮的触发事件（派发按钮当前不显示）</li>
+</ul>
+<p><em>注：前端框架layui的一些功能需要引入layui文件夹里的layui.all.js才能够使用</em></p>
+<h4 id="下拉菜单的多级联动"><a href="#下拉菜单的多级联动" class="headerlink" title="下拉菜单的多级联动"></a>下拉菜单的多级联动</h4><p>选择了工单类型后就会自动出现第二级的下拉菜单，第二级做出选择后，又接着出现第三级菜单。</p>
+<p>这个功能由layui框架提供的设置监听事件完成，前一级菜单监听到“改变选项”事件发生后就触发查询，将当前所选的故障ID作为super_id传入后端，在h_fault_type表查出所有子类故障作为下一级菜单的选项。</p>
+<h4 id="保存"><a href="#保存" class="headerlink" title="保存"></a>保存</h4><p>点击保存后，即触发表单的submit事件，通过调用ajax将表单内的全部信息以json格式post给后端，后端将表单信息封装成一个Fault实例，并设置它的工单状态为1（生成工单），然后insert进数据库。</p>
+<h3 id="抢修过程管理"><a href="#抢修过程管理" class="headerlink" title="抢修过程管理"></a>抢修过程管理</h3><p>录入工单成功后ajax回调里执行window.open(“repairProcess.html”, “_self”)，将接派单页面替换为这个页面，也可以从菜单栏进入。</p>
+<p><img src="C:\Users\mcorl\AppData\Roaming\Typora\typora-user-images\1539519617243.png" alt="1539519617243"></p>
+<p>这个页面为我们提供所有工单的信息，上方的搜索模块可以根据客户名称和工单状态来模糊查找工单，右上角显示的是不同工单状态的统计信息，还提供导入excel工单到数据库和导出excel功能。</p>
+<p>进入页面后，JS进行如下流程：</p>
+<ul>
+<li>调用ajax查询工单的状态统计信息（后台使用sql的count（）函数），并填充到统计栏</li>
+<li>渲染表格，执行一次查询，查出所有工单</li>
+<li>根据不同的工单状态在对应表格的操作栏渲染出不同功能的按钮</li>
+</ul>
+<h4 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h4><p>本模块的模糊查询传入两个参数给后端：客户名称（yhmc）和工单状态(state)，后端将两个参数拼接成”%yhmc%state%”形式的info字符串进行sql查询，查询语句如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	  hf1.FAULT_ID          fault_id,</span><br><span class="line">      hf1.LXFS              lxfs,</span><br><span class="line">      hwt.ORDER_TYPE        order_type,</span><br><span class="line">      hf1.ORDER_TYPE        order_type1,</span><br><span class="line">      hf1.YHMC              yhmc,</span><br><span class="line">      hf1.FAULT_TIME        fault_time,</span><br><span class="line">      hf1.FAULT_ADDRESS     fault_address,</span><br><span class="line">      hfs.FAULT_STATE       fault_state,</span><br><span class="line">      hf1.FAULT_STATE       fault_state1,</span><br><span class="line">      hf1.FAULT_DESCRIPTION fault_description</span><br><span class="line"><span class="keyword">FROM</span> (<span class="keyword">SELECT</span> *</span><br><span class="line">      <span class="keyword">FROM</span> h_fault hf</span><br><span class="line">      <span class="keyword">WHERE</span> (hf.YHMC <span class="keyword">LIKE</span> <span class="comment">#&#123;info&#125; AND hf.ORDER_TYPE = 2) OR</span></span><br><span class="line">            (<span class="keyword">concat</span>(hf.YHMC, hf.FAULT_STATE) <span class="keyword">LIKE</span> <span class="comment">#&#123;info&#125;)) hf1, h_workorder_type hwt,h_fault_state hfs</span></span><br><span class="line"><span class="keyword">WHERE</span> (hf1.order_type = hwt.ID <span class="keyword">AND</span> hf1.fault_state = hfs.ID);</span><br></pre></td></tr></table></figure>
+<p>首先在故障表查询符合条件的所有工单，然后再联表查询，根据order_type和fault_state两个字段中的ID查出相应的NAME，组合成一张新表返回。</p>
+<h4 id="表格自定义工具栏"><a href="#表格自定义工具栏" class="headerlink" title="表格自定义工具栏"></a>表格自定义工具栏</h4><p>layui框架提供laytpl语法来在模板中支持脚本语句，我们利用它实现为不同工单提供不同的按钮组合。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/html"</span> <span class="attr">id</span>=<span class="string">"barDemo"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"layui-btn layui-btn-xs layui-btn-normal"</span> <span class="attr">lay-event</span>=<span class="string">"view"</span>&gt;</span>查看<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="undefined">    &#123;&#123;#  if((d.fault_state1&gt;=1&amp;&amp;d.fault_state1&lt;=3)||d.fault_state1==6||d.fault_state1==null)&#123; &#125;&#125;</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"layui-btn layui-btn-xs"</span> <span class="attr">lay-event</span>=<span class="string">"edit"</span>&gt;</span>编辑<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="undefined">    &#123;&#123;#  &#125;  &#125;&#125;</span></span><br><span class="line"><span class="undefined">    &#123;&#123;#  if(d.fault_state1 ==4) &#123;&#125;&#125;</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"layui-btn layui-btn-xs"</span> <span class="attr">lay-event</span>=<span class="string">"edit"</span>&gt;</span>归档<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="undefined">    &#123;&#123;#  &#125;  &#125;&#125;</span></span><br><span class="line"><span class="undefined">    &#123;&#123;#  if(d.order_type1==2&amp;&amp;d.fault_state1 ==1) &#123;&#125;&#125;</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"layui-btn layui-btn-xs"</span> <span class="attr">lay-event</span>=<span class="string">"archive"</span>&gt;</span>归档<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="undefined">    &#123;&#123;#  &#125;  &#125;&#125;</span></span><br><span class="line"><span class="undefined">    &#123;&#123;#  if(d.fault_state1 &gt;=2&amp;&amp;d.fault_state1 &lt;=4) &#123;&#125;&#125;</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"layui-btn layui-btn-xs layui-btn-warm"</span> <span class="attr">lay-event</span>=<span class="string">"cancel"</span>&gt;</span>取消<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="undefined">    &#123;&#123;#  &#125;  &#125;&#125;</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"layui-btn layui-btn-danger layui-btn-xs"</span> <span class="attr">lay-event</span>=<span class="string">"del"</span>&gt;</span>删除<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>其中d.fault_state1、d.order_type1是动态内容，它对应数据接口返回的字段名。</p>
+<h4 id="数据表格按钮组"><a href="#数据表格按钮组" class="headerlink" title="数据表格按钮组"></a>数据表格按钮组</h4><h5 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h5><p>所有工单都有。点击后进入view.html，传入参数为当前点击行的fault_id，后端即可根据fault_id查询出当前查看行的所有信息，填充入HTML元素中，所有元素均为只读。</p>
+<h5 id="编辑"><a href="#编辑" class="headerlink" title="编辑"></a>编辑</h5><p>仅工单状态为1-4和6的工单有。点击后进入dealFault2.html，传入参数为当前点击行的fault_id，与故障录入是同一个页面，可以根据是否传入ID来区分。进入后根据ID查询对应Fault的信息，我们根据不同的状态呈现不同的页面：</p>
+<ul>
+<li>待派发</li>
+</ul>
+<p>可编辑基本信息，显示派单div，可以保存或者派发，派发后状态变为2（派单）。服务单只可以保存。</p>
+<ul>
+<li>派单</li>
+</ul>
+<p>无法编辑基本信息和派单信息，显示处理div，只可以填写到达现场时间，保存后状态变为3（到达现场）</p>
+<ul>
+<li>到达现场</li>
+</ul>
+<p>无法编辑基本信息和派单信息，显示处理div，只可以填写到达故障修复时间、处理结果、处理结束时间，保存后状态变为4（故障修复）</p>
+<ul>
+<li>故障修复</li>
+</ul>
+<p>无法编辑基本信息和派单信息，显示处理div，只可以填写完成归档时间，保存后状态变为5（完成归档）</p>
+<ul>
+<li>已取消</li>
+</ul>
+<p>逻辑与待派发相同</p>
+<h5 id="取消"><a href="#取消" class="headerlink" title="取消"></a>取消</h5><p>仅工单状态为2-4的工单有。点击后将当前fault_id对应的工单状态变为6（已取消）</p>
+<h5 id="归档"><a href="#归档" class="headerlink" title="归档"></a>归档</h5><p>仅服务单有。点击后将当前fault_id对应的工单状态变为5（完成归档）</p>
+<h5 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h5><p>所有工单都有，点击删除对应ID的工单</p>
+<h4 id="导入Excel"><a href="#导入Excel" class="headerlink" title="导入Excel"></a>导入Excel</h4><p>maven引入poi包来支持对excel的操作：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 引入poi，解析workbook视图 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.poi<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>poi<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.poi<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>poi-ooxml<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>导入过程：</p>
+<p>点击“批量导入”调用layui框架提供的文件上传模块，模块加载时设置属性只接受.xls和.xlsx文件。上传完成后开始读取文件，首先判断文件后缀名，根据不同后缀创建不同的WorkBook视图（一个视图即代表一个Excel文件）。</p>
+<p>.xls代表文件是97版Excel，创建HSSFWorkbook，.xlsx代表2003版之后的Excel，创建XSSFWorkbook。</p>
+<p>之后调用Workbook对象的方法即可得到Sheet、Row这些对象，我们对所有Sheet及其含有的Row进行遍历，将每个Row也就是每一行的数据封装成一个Map（title，value）对象，注意数据放进Map的过程中我们要对日期型的数据做转换：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (cell.getCellType() == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="comment">//该cell是数值型</span></span><br><span class="line">    <span class="keyword">if</span> (DateUtil.isCellDateFormatted(cell)) &#123;</span><br><span class="line">        <span class="comment">//日期格式转换</span></span><br><span class="line">        SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line">        value = sdf.format(cell.getDateCellValue()).toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后整个Excel的数据就储存在了一个List&lt;Map&lt;String,String&gt;&gt;中。最后我们遍历List，取出每个Map，把对应的key-value对转化成一个Fault对象，将每个对象都insert进数据库就完成了导入。</p>
+<h4 id="导出Excel"><a href="#导出Excel" class="headerlink" title="导出Excel"></a>导出Excel</h4><p>导出过程与导入过程相反。</p>
+<p>首先设置一个String数组存放title，然后从数据库中查找出所有数据放入一个List<fault>中，再根据title数组和List的大小新建一个二维String数组存放数据。将二维数组和title数组作为参数传入导出方法中。</fault></p>
+<p>进入导出方法后，首先新建一个WorkBook视图，接着新建一个Sheet对象，根据title数组设置Sheet的标题行，即Row（0），然后遍历二维String数组，将每一维度的内容输入进Cell并封装为一条条的Row对象。最后通过HttpServletResponse对象向客户端返回WorkBook的输出流，这样客户端浏览器能够接收到最后生成的Excel文件。</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        </p><p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
