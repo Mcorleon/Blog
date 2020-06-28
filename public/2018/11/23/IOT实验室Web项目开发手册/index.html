@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mcorleon">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="IOT实验室Web项目开发手册">
+  <meta property="og:description" content="java">
+  <meta property="og:site_name" content="923号森林">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://Mcorleon.github.io">
+  
+    <link rel="alternate" href="/atom.xml" title="923号森林" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/logo.png">
+  
+
+  <!-- Site Title -->
+  <title>923号森林</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-light.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">IOT实验室Web项目开发手册</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  主页
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  归档
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/Mcorleon">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:mcorleon95@outlook.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Mcorleon</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-11-23</span>
+            <span class="time">20:39:43</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/其他/">其他</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Coding/">#Coding</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>本文可作为实验室Web项目通用的开发指南。其内容涵盖一个基本Web项目的搭建方法、开发规范、插件说明以及常见问题。<br><a id="more"></a></p>
+<p>本文读者应该具备的技能：Java语言基础、数据库基础（SQL语句）、基本的前端开发能力（HTML+CSS+JS）、Java EE基础（了解Servlet、JSP等入门级Web开发技术或者有SSM、SSH等高级Web框架使用经验）。</p>
+<h2 id="搭建项目"><a href="#搭建项目" class="headerlink" title="搭建项目"></a>搭建项目</h2><p><strong>操作系统</strong>：Wndows10</p>
+<p><strong>IDE</strong>：使用IntelliJ IDEA（ <a href="https://www.jetbrains.com/idea" target="_blank" rel="noopener">https://www.jetbrains.com/idea</a> ），可在官网进行学生认证免费使用，或者使用license server激活（启动时需要联网）。</p>
+<p><strong>项目构建</strong>：Maven</p>
+<p><strong>版本控制</strong>：Git</p>
+<p><strong>后台</strong>：Spring Boot+Mybatis</p>
+<p><strong>数据库</strong>：MySQL</p>
+<h3 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h3><p>Maven在项目中最核心的作用就是管理jar包。项目中需要引入大量第三方包和插件，用传统的下载jar包再手动引入的方式会十分繁琐，并且项目多人共同开发时可能引发jar包冲突。使用Maven的话引入jar包只需统一在pom.xml文件里配置即可，Maven会自动在中央仓库下载并引入。</p>
+<h5 id="安装"><a href="#安装" class="headerlink" title="安装:"></a>安装:</h5><p>1.官网下载 <a href="http://maven.apache.org/download.html" target="_blank" rel="noopener">http://maven.apache.org/download.html</a> zip包，解压到相应路径，例如 D:\software\apache-maven-3.5.0</p>
+<p>2.配置环境变量，右键“计算机”，选择“属性”，之后点击“高级系统设置”，点击“环境变量”：</p>
+<p>新建系统变量   MAVEN_HOME  变量值：D:\software\apache-maven-3.5.0</p>
+<p>编辑系统变量  Path         添加变量值： %MAVEN_HOME%\bin</p>
+<p>3.终端输入 mvn -v 即可检查是否安装成功</p>
+<p><img src="https://s2.ax1x.com/2019/05/29/VuAGYq.png" alt=""></p>
+<h5 id="配置文件："><a href="#配置文件：" class="headerlink" title="配置文件："></a>配置文件：</h5><p>编辑 {MAVEN_HOME }/conf 下的 settings.xml 可进行各种设置。</p>
+<ul>
+<li>设置本地仓库位置，默认是在 user.home 下面，仓库储存的是从中央仓库下载的包</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- localRepository</span></span><br><span class="line"><span class="comment">   | The path to the local repository maven will use to store artifacts.</span></span><br><span class="line"><span class="comment">   |</span></span><br><span class="line"><span class="comment">   | Default: $&#123;user.home&#125;/.m2/repository</span></span><br><span class="line"><span class="comment">  &lt;localRepository&gt;/path/to/local/repo&lt;/localRepository&gt;</span></span><br><span class="line"><span class="comment">  --&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>将中央仓库设置为阿里云的，国外的库可能会很慢</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>Nexus aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span> </span><br><span class="line"> <span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h3><p>用于对程序进行版本控制、多人协作开发</p>
+<h5 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h5><p>直接下载安装程序 <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">https://git-scm.com/downloads</a>  按默认选项安装</p>
+<p>安装完毕在开始菜单打开 Git-&gt;Git Bash ，设置完用户信息即可使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;Your Name&quot;</span><br><span class="line">$ git config --global user.email &quot;email@example.com&quot;</span><br></pre></td></tr></table></figure>
+<h5 id="工作原理："><a href="#工作原理：" class="headerlink" title="工作原理："></a>工作原理：</h5><ul>
+<li>本地仓库分成工作目录、缓存区（stage）、HEAD，工作目录就是当前编辑的文件，stage临时保存你的改动，HEAD是个指针，指向你最近一次提交的结果。</li>
+<li>远程仓库可以备份你的代码，并与他人共享，常用的是GitHub</li>
+<li>初始化仓库只有一个master分支，有新的工作任务可以新建分支，在分支上开发，完成后再合并到主分支,分支上的改动未merge时对master不可见。</li>
+<li>可参考 <a href="http://www.bootcss.com/p/git-guide/" target="_blank" rel="noopener">http://www.bootcss.com/p/git-guide/</a></li>
+</ul>
+<h5 id="常用命令："><a href="#常用命令：" class="headerlink" title="常用命令："></a>常用命令：</h5><p>git init 在当前目录初始化一个git仓库，也就是可以对这个目录进行版本控制了</p>
+<p>git add . 把当前所有修改更新到stage里</p>
+<p>git commit -m ’代码提交信息‘  提交stage里的修改到本地仓库</p>
+<p>git push orgin master  把本地库的修改提交到远程库的maser分支中（也可换成别的分支）</p>
+<p>git pull  把远程库的代码更新到本地</p>
+<p>git clone xxxxx 克隆一份代码到本地仓库</p>
+<p>git checkout master/branch  切换到某个分支</p>
+<p>git log 查看当前分支上面的日志信息</p>
+<p>git reset –hard HEAD^ 回退到上个版本</p>
+<h3 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h3><p>常用的数据库还有Oracle、SQLServer等等，前者太庞大，后者太小，一般情况使用中型数据库MySQL即可。</p>
+<h5 id="安装：-1"><a href="#安装：-1" class="headerlink" title="安装："></a>安装：</h5><p>1.下载zip包  <a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener">https://dev.mysql.com/downloads/mysql/</a> ，解压，例如 C:\Program Files\MySQL\mysql-5.7.23-winx64</p>
+<p>2.配置环境变量，右键“计算机”，选择“属性”，之后点击“高级系统设置”，点击“环境变量”：</p>
+<p>新建系统变量   MYSQL_HOME  变量值：C:\Program Files\MySQL\mysql-5.7.23-winx64</p>
+<p>编辑系统变量  Path         添加变量值： %MYSQL_HOME%\bin;</p>
+<p>3.生成data文件：以管理员身份运行cmd，进入 C:\Program Files\MySQL\mysql-5.7.23-winx64\bin 下</p>
+<p>执行命令：mysqld –initialize-insecure –user=mysql  在C:\Program Files\MySQL\mysql-5.7.23-winx64目录下生成data目录</p>
+<h5 id="使用："><a href="#使用：" class="headerlink" title="使用："></a>使用：</h5><p>1.启动服务：执行命令：net start mysql </p>
+<p>2.登录MySQL：执行命令mysql -u root -p   默认没有密码，回车即可</p>
+<p>3.修改root用户密码：update mysql.user set authentication_string=password(“123456”) where user</p>
+<p>=”root”;     此处引号中的内容是密码</p>
+<h5 id="常见Q-amp-A："><a href="#常见Q-amp-A：" class="headerlink" title="常见Q&amp;A："></a>常见Q&amp;A：</h5><p>Q: 启动服务失败</p>
+<p>A：执行命令 mysqld -install  即可（不需要my.ini配置文件也可以）然后去资源管理器中把mysql进程全结束了，重新启动即可。</p>
+<p>Q: mysql插入字段有中文就会报错</p>
+<p>A: 执行命令  show variables like ‘character_set_%’ ;  检查得知是因为数据库编码为 latin</p>
+<p>ALTER database xxx character set utf8;  这样修改编码即可</p>
+<p>Q: mysql的服务已经停止，无法启动</p>
+<p>A：（1）如果之前装过mysql的，把mysql的server卸载掉，连带MySQL Server 5.7\data文件一起清干净</p>
+<p>​      （2）重新装好后，输入 net start mysql 还是无法启动服务，这个时候，输入以下指令：</p>
+<p>​          mysqld –remove 删除mysql服务</p>
+<p>​          mysqld –install 安装服务</p>
+<p>​          mysqld –initialize  初始化</p>
+<p>​           net  start mysql </p>
+<p>​           然后发现服务已经启动</p>
+<p>​        （3）输入mysql -u root -p 启动mysql ，然后会要求你输入密码，注意由于是初始化的，所以系统自动配置一个初始化密码，这个密码在哪里找到呢？在 MySQL Server 5.7.2\data 这个路径下有一个计算机名字加err的文件，这个文件是错误日志，打开它，找到一个temporary password的记录条，冒号后面的就是初始化密码了。</p>
+<pre><code>（4）输入初始化密码以后，修改密码，输入指令  alter user  &apos;root&apos;@&apos;localhost&apos; identified by &apos;密码&apos;； 就能修改成功了。
+</code></pre><p>Q：使用纯数字表名</p>
+<p>A：表名纯数字的话要用<code></code>包起来(esc下面那个键)</p>
+<h3 id="Spring-Boot-Mybatis"><a href="#Spring-Boot-Mybatis" class="headerlink" title="Spring Boot+Mybatis"></a>Spring Boot+Mybatis</h3><p>Spring Boot特点：只使用一个核心配置文件，取消了一系列xml配置，甚至连web.xml都没有, 全部使用注解的方式完成MVC的功能；框架内置Tomcat服务器，运行启动类中的main函数即可启动，整体非常简洁。</p>
+<p>Mybatis是java Web最常用的持久层框架（ORM），与Spring Boot配合可以使用注解轻松地编写SQL语句对数据库进行CRUD操作。</p>
+<h5 id="使用IDEA搭建一个基本的后台"><a href="#使用IDEA搭建一个基本的后台" class="headerlink" title="使用IDEA搭建一个基本的后台"></a>使用IDEA搭建一个基本的后台</h5><p>1.新建工程</p>
+<p><img src="https://s2.ax1x.com/2019/05/29/VuAKOg.png" alt=""></p>
+<p><img src="https://s2.ax1x.com/2019/05/29/VuAlwj.png" alt=""></p>
+<p>2.勾上web，其他的不用</p>
+<p><img src="https://s2.ax1x.com/2019/05/29/VuAQmQ.png" alt=""></p>
+<p>3.Finish</p>
+<p><img src="https://s2.ax1x.com/2019/05/29/VuAu6S.png" alt=""></p>
+<p>4.完善一下目录结构</p>
+<p><img src="https://s2.ax1x.com/2019/05/29/VuA8kn.png" alt=""></p>
+<p>5.在maven的pom.xml添加相关的依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.tqh<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>demo<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>demo<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>Demo project for Spring Boot<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.5.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.reporting.outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.reporting.outputEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mybatis-spring-boot.version</span>&gt;</span>1.2.0<span class="tag">&lt;/<span class="name">mybatis-spring-boot.version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mysql-connector.version</span>&gt;</span>5.1.39<span class="tag">&lt;/<span class="name">mysql-connector.version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--&gt;使用thymeleaf模板&lt;--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-thymeleaf<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--&gt;引入Mybatis依赖&lt;--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;mybatis-spring-boot.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--&gt;引入MySQL依赖&lt;--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;mysql-connector.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--&gt;热部署工具&lt;--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-devtools<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>6.配置核心文件application.properties</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#服务使用的端口</span><br><span class="line">server.port=9090</span><br><span class="line">#mvc配置</span><br><span class="line">spring.mvc.view.prefix=classpath:/templates/</span><br><span class="line">spring.mvc.view.suffix=.html</span><br><span class="line">spring.mvc.static-path-pattern=/static/**</span><br><span class="line">#thymeleaf配置</span><br><span class="line">#spring.thymeleaf.prefix = classpath:/static/</span><br><span class="line">#spring.thymeleaf.suffix = .html</span><br><span class="line">#数据库配置</span><br><span class="line">spring.datasource.url=jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=utf8</span><br><span class="line">spring.datasource.username=root</span><br><span class="line">spring.datasource.password=root</span><br><span class="line">spring.datasource.driver-class-name=com.mysql.jdbc.Driver</span><br><span class="line">#Mybatis配置</span><br><span class="line">mybatis.typeAliasesPackage=com.tqh.demo.model</span><br></pre></td></tr></table></figure>
+<h5 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h5><p>1.在MySQL数据库新建一个schema，命名为test（如上方配置文件所示）；在test里新建一张person表，字段为id、name、age，插入一些数据，不赘述。</p>
+<p>2.在model包新建一个Person类（也可以使用IDEA根据数据库表字段自动生成）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.tqh.demo.model;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(Integer age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"id="</span> + id +<span class="string">", name='"</span> + name + <span class="string">'\''</span> +<span class="string">", age="</span> + age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.在Mapper包创建一个UserMapper</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.tqh.demo.mapper;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.tqh.demo.model.Person;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.Select;</span><br><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserMapper</span> </span>&#123; </span><br><span class="line">　　<span class="meta">@Select</span>(<span class="string">"SELECT * FROM person WHERE id = #&#123;id&#125;"</span>) </span><br><span class="line">　　<span class="function">Person <span class="title">selectUser</span><span class="params">(<span class="keyword">int</span> id)</span></span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4.在service包创建一个UserService</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.tqh.demo.service;</span><br><span class="line"><span class="keyword">import</span> com.tqh.demo.model.Person;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> Person <span class="title">selectUser</span><span class="params">(<span class="keyword">int</span> id)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后在service.impl包里创建一个对应实现类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.tqh.demo.service.impl;</span><br><span class="line"><span class="keyword">import</span> com.tqh.demo.model.Person;</span><br><span class="line"><span class="keyword">import</span> com.tqh.demo.service.UserService;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceImpl</span> <span class="keyword">implements</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line">  <span class="meta">@Autowired</span></span><br><span class="line">  UserMapper userMapper;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Person <span class="title">selectUser</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> userMapper.selectUser(id);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5.在controller包新建一个UserController控制器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.tqh.demo.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.tqh.demo.service.UserService;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.EnableAutoConfiguration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.PathVariable;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</span><br><span class="line">   <span class="meta">@Autowired</span></span><br><span class="line">   <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@RequestMapping</span>(<span class="string">"/showUser/&#123;id&#125;"</span>)</span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">selectUser</span> <span class="params">(@PathVariable <span class="keyword">int</span> id)</span></span>&#123;</span><br><span class="line">   	 <span class="keyword">return</span> userService.selectUser(id).toString();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>6.编写启动类DemoApplication</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.tqh.demo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.mybatis.spring.annotation.MapperScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line"><span class="meta">@MapperScan</span>(<span class="string">"com.tqh.demo.mapper"</span>)</span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(DemoApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>7.运行DemoApplication，打开浏览器访问<a href="http://localhost:9090/showUser/1，成功查询到数据库的数据" target="_blank" rel="noopener">http://localhost:9090/showUser/1，成功查询到数据库的数据</a></p>
+<p><img src="https://s2.ax1x.com/2019/05/29/VuA1Ts.png" alt=""></p>
+<h5 id="常见Q-amp-A"><a href="#常见Q-amp-A" class="headerlink" title="常见Q&amp;A"></a>常见Q&amp;A</h5><p>Q: Mybatis报错Parameter not found</p>
+<p>A: 对参数加标签@Param(“xxx”)</p>
+<p>Q： Mybatis使用动态表名？</p>
+<p>A： 重点是用$和@Param    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Update</span>(<span class="string">"CREATE TABLE $&#123;para&#125;（.....）"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function">Boolean <span class="title">createTable</span><span class="params">(@Param(value=<span class="string">"para"</span>)</span> String data)</span>;</span><br></pre></td></tr></table></figure>
+<p>Q:  如何用Mybatis完成SQL拼接来实现多条件查询？</p>
+<p>A：1.建一个SqlProvider类来辅助完成拼接</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SqlProvider</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">selectPerson</span><span class="params">(@Param(<span class="string">"id"</span>)</span> String id, @<span class="title">Param</span><span class="params">(<span class="string">"name"</span>)</span>String name, @<span class="title">Param</span><span class="params">(<span class="string">"age"</span>)</span>String age)</span>&#123;</span><br><span class="line">        String sql=<span class="string">"SELECT * FROM person ps WHERE 1=1"</span>;</span><br><span class="line">        <span class="keyword">if</span>(id!=<span class="keyword">null</span>&amp;&amp;!id.trim().equals(<span class="string">""</span>))&#123;</span><br><span class="line">            sql+=<span class="string">" AND ps.id=#&#123;id&#125;"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(name!=<span class="keyword">null</span>&amp;&amp;!name.trim().equals(<span class="string">""</span>))&#123;</span><br><span class="line">            sql+=<span class="string">" AND ps.name=#&#123;name&#125;"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(age!=<span class="keyword">null</span>&amp;&amp;!age.trim().equals(<span class="string">""</span>))&#123;</span><br><span class="line">            sql+=<span class="string">" AND ps.age=#&#123;age&#125;"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sql;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>2.修改mapper里的接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.tqh.demo.mapper;</span><br><span class="line"><span class="keyword">import</span> com.tqh.demo.model.Person;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserMapper</span> </span>&#123; </span><br><span class="line">　　<span class="meta">@SelectProvider</span>(type = SqlProvider.class, method = <span class="string">"selectPerson"</span>)</span><br><span class="line">　　<span class="function">List&lt;Person&gt; <span class="title">selectPerson</span><span class="params">(@Param(<span class="string">"id"</span>)</span> String id, @<span class="title">Param</span><span class="params">(<span class="string">"name"</span>)</span>String name, @<span class="title">Param</span><span class="params">(<span class="string">"age"</span>)</span>String age)</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<!-- Link Gitalk 的支持文件  -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script> 
+<script src="https://cdn.bootcss.com/blueimp-md5/2.8.0/js/md5.min.js"></script>
+<div id="gitalk-container"></div>     <script type="text/javascript">
+    var gitalk = new Gitalk({
+
+    // gitalk的主要参数
+        clientID: '4bad4efde948931a3829',
+        clientSecret: 'acdd4548be531ef7495346a44c8b8a7572ccd5ff',
+        repo: 'mcorleon.github.io',
+        owner: 'Mcorleon',
+        admin: ['Mcorleon'],
+        id: md5(location.pathname),
+
+    });
+    gitalk.render('gitalk-container');
+</script> 
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Gitalk end -->
+</article>
+
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+         Hey Jude,we will ride them someday.
+    
+        </p><p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

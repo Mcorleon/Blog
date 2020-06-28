@@ -1,7 +1,8 @@
 ---
 title: IOT实验室Web项目开发手册
-date: 2019-1-7 15:25:42
+date: 2018-11-23 14:56:41
 tags: Coding
+categories: 其他
 ---
 
 本文可作为实验室Web项目通用的开发指南。其内容涵盖一个基本Web项目的搭建方法、开发规范、插件说明以及常见问题。
@@ -43,7 +44,7 @@ Maven在项目中最核心的作用就是管理jar包。项目中需要引入大
 
 3.终端输入 mvn -v 即可检查是否安装成功
 
-![1559099761353](/home/qiuhang/.config/Typora/typora-user-images/1559099761353.png)
+![](https://s2.ax1x.com/2019/05/29/VuAGYq.png)
 
 ##### 配置文件：
 
@@ -201,21 +202,21 @@ Mybatis是java Web最常用的持久层框架（ORM），与Spring Boot配合可
 
 1.新建工程
 
-![img](https://images2017.cnblogs.com/blog/1252282/201712/1252282-20171208162710921-1687430293.png)
+![](https://s2.ax1x.com/2019/05/29/VuAKOg.png)
 
-![img](https://images2017.cnblogs.com/blog/1252282/201712/1252282-20171208162941718-320506362.png)
+![](https://s2.ax1x.com/2019/05/29/VuAlwj.png)
 
 2.勾上web，其他的不用
 
-![img](https://images2017.cnblogs.com/blog/1252282/201712/1252282-20171208163055015-1494041380.png)
+![](https://s2.ax1x.com/2019/05/29/VuAQmQ.png)
 
 3.Finish
 
-![img](https://images2017.cnblogs.com/blog/1252282/201712/1252282-20171208163208171-1829970561.png)
+![](https://s2.ax1x.com/2019/05/29/VuAu6S.png)
 
 4.完善一下目录结构
 
-![img](https://images2017.cnblogs.com/blog/1252282/201712/1252282-20171208164809406-2123095565.png)
+![](https://s2.ax1x.com/2019/05/29/VuA8kn.png)
 
 5.在maven的pom.xml添加相关的依赖
 
@@ -404,6 +405,7 @@ public class UserServiceImpl implements UserService {
       return userMapper.selectUser(id);
   }
 }
+
 ```
 
 5.在controller包新建一个UserController控制器
@@ -428,6 +430,7 @@ public class UserController {
    	 return userService.selectUser(id).toString();
    }
 }
+
 ```
 
 6.编写启动类DemoApplication
@@ -446,11 +449,12 @@ public class DemoApplication {
         SpringApplication.run(DemoApplication.class, args);
     }
 }
+
 ```
 
 7.运行DemoApplication，打开浏览器访问http://localhost:9090/showUser/1，成功查询到数据库的数据
 
-![img](https://images2017.cnblogs.com/blog/1252282/201712/1252282-20171208173012202-2126121598.png)
+![](https://s2.ax1x.com/2019/05/29/VuA1Ts.png)
 
 ##### 常见Q&A
 
@@ -468,6 +472,7 @@ A： 重点是用$和@Param
 @Update("CREATE TABLE ${para}（.....）")
 
 Boolean createTable(@Param(value="para") String data);
+
 ```
 
 
@@ -491,6 +496,7 @@ public class SqlProvider {
         }
         return sql;
     }
+
 ```
 
 2.修改mapper里的接口
@@ -504,5 +510,6 @@ public interface UserMapper {
 　　@SelectProvider(type = SqlProvider.class, method = "selectPerson")
 　　List<Person> selectPerson(@Param("id") String id, @Param("name")String name, @Param("age")String age); 
 }
+
 ```
 
